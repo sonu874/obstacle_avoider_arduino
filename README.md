@@ -35,10 +35,10 @@ void setup() {
 void loop() {
   
    check();
-   while(cm<=10||cm<0)                      /*If forward distance is less than 10 cm or reading is incorrect then stop for 50 miliseconds and check right distance.*/
+   while(cm<=12||cm<0)                      /*If forward distance is less than 10 cm or reading is incorrect then stop for 50 miliseconds and check right distance.*/
    {               
      stops();                                
-     delay(50);
+     delay(100);
      myservo.write(0);                      /*U.S sensor faces right side.*/
      delay(300);
      check();
@@ -62,7 +62,7 @@ void loop() {
    }
    check();                                 /*If forward distance is greater than 12 cm means bot goes forward.*/
    
-   while(cm>10)   
+   while(cm>12)   
    { 
      myservo.write(90);                     /*U.S sensor is at original position ,i.e faces front.*/
      delay(100);
@@ -74,7 +74,7 @@ void loop() {
 void check()                                /*This function measures the distance of obstacle from the U.S sensor*/
 {
    digitalWrite(trig,LOW);
-   delayMicroseconds(10);
+   delayMicroseconds(30);
    digitalWrite(trig,LOW);
    delayMicroseconds(2);
    digitalWrite(trig,HIGH);
@@ -103,7 +103,7 @@ void sharpleft()
   digitalWrite(leftMotorBackward,HIGH);
   digitalWrite(rightMotorBackward,LOW);
   digitalWrite(leftMotorForward,LOW);
-  Serial.print("Left//////////");
+  Serial.print("Left");
 }
 
 /********************************************* TURN SHARPRIGHT *****************************************************/
@@ -113,7 +113,7 @@ void sharpright()
   digitalWrite(rightMotorBackward,HIGH);
   digitalWrite(rightMotorForward,LOW);
   digitalWrite(leftMotorBackward,LOW);
-  Serial.print("Right///////////");
+  Serial.print("Right");
 }
 /********************************************* STOP *****************************************************/
 void stops()   
